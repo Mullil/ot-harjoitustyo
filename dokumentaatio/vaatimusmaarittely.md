@@ -4,23 +4,16 @@
 
 Sovelluksen avulla käyttäjät voivat seurata opintojaan ja pitää kirjaa suoritetuista ja suorittamattomista kursseistaan. Käyttäjä voi tehdä seurantaa myös ajankohtaisten kurssien suorituksesta, jakamalla kurssien vaatimat tehtävät ja projektit osiin esimerkiksi viikkotasolla.
 
-## Käyttäjät
-
-Sovelluksella on vain yksi käyttäjärooli eli normaali käyttäjä.
-
-## Käyttöliittymäluonnos
-
-
 ## Perusversion tarjoama toiminnallisuus
 
 ### Ennen kirjautumista
 
 - Käyttäjä voi luoda käyttäjätunnuksen
-- - Käyttäjätunnuksen tulee olla uniikki ja salasanan vähintään 8 merkkiä pitkä
+  - Käyttäjätunnuksen tulee olla uniikki ja salasanan vähintään 8 merkkiä pitkä
 
 
 - Käyttäjä voi kirjautua järjestelmään
-- - Järjestelmä ilmoittaa, jos käyttäjätunnus ja salasana eivät täsmää.
+  - Järjestelmä ilmoittaa, jos käyttäjätunnus ja salasana eivät täsmää.
 
 ### Kirjautumisen jälkeen
 
