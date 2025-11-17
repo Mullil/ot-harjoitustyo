@@ -5,3 +5,5 @@ Tämän *harjoitustyön* tarkoituksena on toteuttaa **opintojen seurantajärjest
 [laskarit](https://github.com/Mullil/ot-harjoitustyo/tree/main/laskarit)
 
 [työaikakirjanpito](https://github.com/Mullil/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjanpito.md)
+
+[changelog](https://github.com/Mullil/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)

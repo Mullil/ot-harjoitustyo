@@ -1,0 +1,32 @@
+import sqlite3
+
+def drop_tables():
+    conn = sqlite3.connect("app.db")
+    cur = conn.cursor()
+    cur.execute("DROP TABLE IF EXISTS users")
+    cur.execute("DROP TABLE IF EXISTS courses")
+    cur.execute("DROP TABLE IF EXISTS tasks")
+
+def create_db():
+    conn = sqlite3.connect("app.db")
+    cur = conn.cursor()
+    cur.execute("""CREATE TABLE IF NOT EXISTS users
+                    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    username TEXT NOT NULL,
+                    password TEXT NOT NULL)
+                 """)
+    cur.execute("""CREATE TABLE IF NOT EXISTS courses
+                    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    user_id INTEGER,
+                    name TEXT NOT NULL,
+                    credits INTEGER NOT NULL,
+                    completed BOOLEAN DEFAULT 0,
+                    FOREIGN KEY (user_id) REFERENCES users(id))""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS tasks
+                    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    course_id INTEGER,
+                    content TEXT NOT NULL,
+                    deadline TEXT,
+                    FOREIGN KEY (course_id) REFERENCES courses(id))""")
+    conn.commit()
+    conn.close()
