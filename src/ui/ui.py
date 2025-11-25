@@ -2,6 +2,9 @@ from ui.starting_view import StartingView
 from ui.login_view import LoginView
 from ui.register_view import RegisterView
 from ui.index_view import IndexView
+from ui.create_course_view import CreateCourseView
+from os import getenv
+
 
 class UI:
     def __init__(self, root):
@@ -11,9 +14,13 @@ class UI:
     def start(self):
         if self.current_view:
             self.current_view.destroy()
-        
-        self.current_view = StartingView(self.root, self.show_login_view, self.show_register_view)
-        self.current_view.initialize_view()
+
+        if getenv("DEV_ENV") == "True":
+            self.show_index_view()
+        else:
+            self.current_view = StartingView(
+                self.root, self.show_login_view, self.show_register_view)
+            self.current_view.initialize_view()
 
     def show_register_view(self):
         if self.current_view:
@@ -24,11 +31,18 @@ class UI:
     def show_login_view(self):
         if self.current_view:
             self.current_view.destroy()
-        self.current_view = LoginView(self.root)
+        self.current_view = LoginView(self.root, self.show_index_view)
         self.current_view.initialize_view()
 
     def show_index_view(self):
         if self.current_view:
             self.current_view.destroy()
-        self.current_view = IndexView(self.root)
+        self.current_view = IndexView(
+            self.root, self.show_create_course_view, self.start)
+        self.current_view.initialize_view()
+
+    def show_create_course_view(self):
+        if self.current_view:
+            self.current_view.destroy()
+        self.current_view = CreateCourseView(self.root, self.show_index_view)
         self.current_view.initialize_view()

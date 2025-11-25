@@ -1,6 +1,7 @@
 from tkinter import ttk
 from services.user_service import UserService
 
+
 class RegisterView:
     def __init__(self, root, register):
         self.root = root
@@ -21,7 +22,8 @@ class RegisterView:
         self.password_entry = ttk.Entry(master=self.frame)
         password_label.grid(padx=5, pady=5)
         self.password_entry.grid(padx=5, pady=5)
-        confirmation_label = ttk.Label(master=self.frame, text="Password confimation")
+        confirmation_label = ttk.Label(
+            master=self.frame, text="Password confimation")
         self.confirmation_entry = ttk.Entry(master=self.frame)
         confirmation_label.grid(padx=5, pady=5)
         self.confirmation_entry.grid(padx=5, pady=5)

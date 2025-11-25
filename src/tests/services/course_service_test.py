@@ -1,46 +1,51 @@
 import unittest
-from services.user_service import (
-    UserService, UsernameExistsError, InvalidPasswordError, InvalidCredentialsError
+from services.course_service import (
+    CourseService
 )
 import db_helper
 
-
-class TestUserService(unittest.TestCase):
+"""
+class TestCourseService(unittest.TestCase):
     def setUp(self):
-        self.username = "username"
-        self.password = "password"
         db_helper.drop_tables()
         db_helper.create_db()
 
-    def test_registration_succeeds(self):
-        service = UserService()
+    def test_course_creating_succeeds(self):
+        service = CourseService()
         self.assertTrue(service.register(
             self.username, self.password, "password"))
 
-    def test_registration_fails_with_short_password(self):
-        service = UserService()
+    def test_course_creating_fails_with_missing_values(self):
+        service = CourseService()
         self.assertRaises(InvalidPasswordError,
                           lambda: service.register("username", "p", "p"))
 
-    def test_registration_fails_if_username_exists(self):
-        service = UserService()
+    def test_course_deleting_succeeds(self):
+        service = CourseService()
         service.register(self.username, self.password, self.password)
-        self.assertRaises(UsernameExistsError, lambda: service.register(
+        self.assertRaises(CoursenameExistsError, lambda: service.register(
             self.username, "anotherpassword", "anotherpassword"))
 
-    def test_registration_fails_if_passwords_dont_match(self):
-        service = UserService()
+    def test_course_completing_succeeds(self):
+        service = CourseService()
         self.assertRaises(InvalidPasswordError, lambda: service.register(
             self.username, "password", "anotherpassword"))
 
-    def test_login_succeeds(self):
-        service = UserService()
+    def test_listing_current_courses_works(self):
+        service = CourseService()
         service.register(self.username, self.password, "password")
         self.assertTrue(service.login(self.username, self.password))
         self.assertEqual(service.current_user.username, "username")
 
-    def test_login_fails_with_invalid_credentials(self):
-        service = UserService()
+    def test_listing_completed_courses_words(self):
+        service = CourseService()
         service.register(self.username, self.password, "password")
         self.assertRaises(InvalidCredentialsError,
                           lambda: service.login(self.username, "wrong"))
+
+    def test_correct_amount_of_credits_are_returned(self):
+        service = CourseService()
+        self.assertTrue(service.register(
+            self.username, self.password, "password"))
+
+"""

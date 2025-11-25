@@ -8,11 +8,11 @@ Sovelluksen avulla käyttäjät voivat seurata opintojaan ja pitää kirjaa suor
 
 ### Ennen kirjautumista
 
-- Käyttäjä voi luoda käyttäjätunnuksen
+- Käyttäjä voi luoda käyttäjätunnuksen **tehty**
   - Käyttäjätunnuksen tulee olla uniikki ja salasanan vähintään 8 merkkiä pitkä
 
 
-- Käyttäjä voi kirjautua järjestelmään
+- Käyttäjä voi kirjautua järjestelmään **tehty**
   - Järjestelmä ilmoittaa, jos käyttäjätunnus ja salasana eivät täsmää.
 
 ### Kirjautumisen jälkeen
@@ -25,7 +25,7 @@ Sovelluksen avulla käyttäjät voivat seurata opintojaan ja pitää kirjaa suor
 
 - Käyttäjä voi merkitä kursseja ja kurssien osia suoritetuiksi.
 
-- Käyttäjä voi kirjautua ulos.
+- Käyttäjä voi kirjautua ulos. **tehty**
 
 
 ### Jatkokehitysideoita

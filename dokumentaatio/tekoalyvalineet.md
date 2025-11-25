@@ -1,3 +1,7 @@
 ## Viikko 3
 
 Tällä viikolla harjoitustyön toteutuksessa tekoälyä käytettiin UI:n toteuttamisen apuna satunnaisten virheiden korjaamiseen, Tkinter esimerkkien tuottamiseen ja tietokantakyselyiden toteutuksessa syntaksin korjaamiseen. Varsinaiset generoidut koodinpätkät ovat yksittäisiä rivejä, joilla on joko korjattu jokin virhe tai generoidusta koodista on otettu esimerkkiä pienin muutoksin. Kokonaisia funktioita tai luokkia ei ole generoitu tekoälyllä.
+
+## Viikko 4
+
+Tällä viikolla tekoälyä käytettiin jälleen virheviestien selittämiseen ja virheiden korjaamiseen. Lisäksi idea listboxin käytöstä ja siihen liittyvät komennot ovat tekoälyltä. Tekoälyn tuottamaa esimerkkiä muokattiin tarkemmin sovelluksen tarpeiden mukaisesti.

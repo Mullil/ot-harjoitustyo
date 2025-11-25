@@ -1,11 +1,13 @@
 import sqlite3
 
+
 def drop_tables():
     conn = sqlite3.connect("app.db")
     cur = conn.cursor()
     cur.execute("DROP TABLE IF EXISTS users")
     cur.execute("DROP TABLE IF EXISTS courses")
     cur.execute("DROP TABLE IF EXISTS tasks")
+
 
 def create_db():
     conn = sqlite3.connect("app.db")

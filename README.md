@@ -30,6 +30,14 @@ Testikattavuusraportin voi tuottaa komennolla:
 poetry run invoke coverage-report
 ```
 
+## Pylint
+
+Staattisen analyysin voi tehdä Pylintillä komennolla:
+
+```bash
+poetry run invoke lint
+```
+
 ## Dokumentaatio
 
 - [työaikakirjanpito](https://github.com/Mullil/ot-harjoitustyo/blob/main/dokumentaatio/tuntikirjanpito.md)
@@ -37,3 +45,5 @@ poetry run invoke coverage-report
 - [changelog](https://github.com/Mullil/ot-harjoitustyo/blob/main/dokumentaatio/changelog.md)
 
 - [vaatimusmäärittely](https://github.com/Mullil/ot-harjoitustyo/blob/main/dokumentaatio/vaatimusmaarittely.md)
+
+- [arkkitehtuuri.md](https://github.com/Mullil/ot-harjoitustyo/blob/main/dokumentaatio/arkkitehtuuri.md)

@@ -1,5 +1,6 @@
 from tkinter import ttk, constants
 
+
 class StartingView:
     def __init__(self, root, login, register):
         self.root = root
@@ -12,7 +13,6 @@ class StartingView:
 
     def destroy(self):
         self.frame.destroy()
-
 
     def initialize_view(self):
         self.frame = ttk.Frame(master=self.root)
