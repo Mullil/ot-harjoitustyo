@@ -3,6 +3,7 @@ from ui.login_view import LoginView
 from ui.register_view import RegisterView
 from ui.index_view import IndexView
 from ui.create_course_view import CreateCourseView
+from ui.course_view import CourseView
 from os import getenv
 
 
@@ -38,7 +39,7 @@ class UI:
         if self.current_view:
             self.current_view.destroy()
         self.current_view = IndexView(
-            self.root, self.show_create_course_view, self.start)
+            self.root, self.show_create_course_view, self.start, self.show_course_view)
         self.current_view.initialize_view()
 
     def show_create_course_view(self):
@@ -46,3 +47,9 @@ class UI:
             self.current_view.destroy()
         self.current_view = CreateCourseView(self.root, self.show_index_view)
         self.current_view.initialize_view()
+
+    def show_course_view(self, course):
+        if self.current_view:
+            self.current_view.destroy()
+        self.current_view = CourseView(self.root, self.show_index_view)
+        self.current_view.initialize_view(course)

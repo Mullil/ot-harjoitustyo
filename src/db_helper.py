@@ -29,6 +29,7 @@ def create_db():
                     course_id INTEGER,
                     content TEXT NOT NULL,
                     deadline TEXT,
+                    done BOOLEAN DEFAULT 0,
                     FOREIGN KEY (course_id) REFERENCES courses(id))""")
     conn.commit()
     conn.close()

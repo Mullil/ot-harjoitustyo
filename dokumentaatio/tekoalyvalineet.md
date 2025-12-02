@@ -5,3 +5,7 @@ Tällä viikolla harjoitustyön toteutuksessa tekoälyä käytettiin UI:n toteut
 ## Viikko 4
 
 Tällä viikolla tekoälyä käytettiin jälleen virheviestien selittämiseen ja virheiden korjaamiseen. Lisäksi idea listboxin käytöstä ja siihen liittyvät komennot ovat tekoälyltä. Tekoälyn tuottamaa esimerkkiä muokattiin tarkemmin sovelluksen tarpeiden mukaisesti.
+
+## Viikko 5
+
+Tällä viikolla tekoälyä käytettiin generoimaan muutamia koodinpätkiä käyttöliittymää varten. Nämä kohdat on ympyröity kommenteilla, jotka kertovat generoidusta koodista. Osia generoidusta koodista on myöhemmin uudelleenkäytetty pienin muutoksin myös joissain muissa käyttöliittymän osissa, muttan näissä kohdissa kommenttia generoidusta koodista ei ole. Myös sekvenssikaavion tuottamiseen käytettiin apuna tekoälyn tuottamaa esimerkkiä sekvenssikaaviosta, mutta lopullinen sekvenssikaavio on hyvin erilainen kuin generoitu sekvenssikaavio.

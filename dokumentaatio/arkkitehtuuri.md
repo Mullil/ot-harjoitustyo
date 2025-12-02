@@ -12,3 +12,16 @@ classDiagram
     UserService --> User
     CourseService --> Course
 ```
+
+## Sekvenssikaavio:
+
+```mermaid
+sequenceDiagram
+
+User->>CreateCourseView: input course info
+User->>CreateCourseView: handle_create()
+CreateCourseView->>CourseService: create_course()
+CreateCourseView->>TaskService: add_tasks()
+CreateCourseView-->>User: show_index_view()
+
+```

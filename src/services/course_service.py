@@ -7,19 +7,19 @@ class CourseService:
         conn = sqlite3.connect("app.db")
         cur = conn.cursor()
         result = cur.execute(
-            "SELECT name, credits FROM courses WHERE completed = 0 AND user_id = ?",
+            "SELECT id, name, credits FROM courses WHERE completed = 0 AND user_id = ?",
             (user_id,)
         )
-        return [Course(c[0], c[1]) for c in result]
+        return [Course(c[0], c[1], c[2]) for c in result]
 
     def get_completed_courses(self, user_id):
         conn = sqlite3.connect("app.db")
         cur = conn.cursor()
         result = cur.execute(
-            "SELECT name, credits, completed FROM courses WHERE completed = 1 AND user_id = ?",
+            "SELECT id, name, credits, completed FROM courses WHERE completed = 1 AND user_id = ?",
             (user_id,)
         )
-        return [Course(c[0], c[1], c[2]) for c in result]
+        return [Course(c[0], c[1], c[2], c[3]) for c in result]
 
     def create_course(self, user_id, name, course_credits):
         conn = sqlite3.connect("app.db")
@@ -29,7 +29,8 @@ class CourseService:
             (user_id, name, course_credits)
         )
         conn.commit()
-        return True
+        course_id = cur.lastrowid
+        return course_id
 
     def complete_course(self, course_id):
         conn = sqlite3.connect("app.db")

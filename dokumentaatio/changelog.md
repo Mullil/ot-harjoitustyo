@@ -12,3 +12,8 @@
 - Kirjautuminen ohjaa uudelle sivulle
 - kotisivulla näytetään käyttäjän suorittamattomat kurssit
 - Kursseja voidaan lisätä
+
+## Viikko 5
+
+- Kursseille voi kurssia luodessa lisätä tehtäviä, joilla on deadlinet
+- Kurssin tehtäviä voi tarkastella klikkaamalla kurssia kurssilistassa
