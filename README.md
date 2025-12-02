@@ -1,6 +1,6 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-Tämän *harjoitustyön* tarkoituksena on toteuttaa **opintojen seurantajärjestelmä**
+Tämän harjoitustyön tarkoituksena on toteuttaa opintojen seurantajärjestelmä. Sovelluksen avulla käyttäjät voivat seurata suorittamiensa kurssien ja opintopisteiden määrää sekä seurata meneillään olevien kurssien määrää, tehtäviä ja deadlineja.
 
 ## Käyttöohje
 
