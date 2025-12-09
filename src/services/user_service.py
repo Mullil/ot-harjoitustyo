@@ -1,5 +1,5 @@
-import sqlite3
 from entities.user import User
+from db_helper import get_conn
 
 
 class InvalidCredentialsError(Exception):
@@ -15,16 +15,45 @@ class UsernameExistsError(Exception):
 
 
 class UserService:
+    """Luokka, jonka avulla hallitaan käyttäjiin liittyviä tietoja
+
+    Attributes:
+        current_user: Järjestelmään kirjautunut käyttäjä
+        conn: yhteys tietokantaan
+    """
     def __init__(self):
+        """Luokan kontruktori, joka alustaa käyttäjän statuksen ja yhteyden tietokantaan
+        """
         self.current_user = None
+        self.conn = get_conn()
 
     def get_users(self):
-        conn = sqlite3.connect("app.db")
-        cur = conn.cursor()
+        """Palauttaa listan kaikista käyttäjistä
+
+        Returns:
+            users: lista käyttäjänimiä
+        """
+        cur = self.conn.cursor()
         result = cur.execute("SELECT username FROM users")
-        return list(map(lambda x: x[0], result.fetchall()))
+        users = list(map(lambda x: x[0], result.fetchall()))
+        return users
 
     def register(self, username, password, confirmation):
+        """Rekisteröi käyttäjän järjestelmään
+
+        Args:
+            username: käyttäjänimi
+            password: salasana
+            confirmation: Salasanan vahvistus
+
+        Raises:
+            InvalidPasswordError: Väärä salasana
+            UsernameExistsError: Käyttäjänimi on jo olemassa
+            InvalidPasswordError: Salasana ei ole kelvollinen
+
+        Returns:
+            True, jos rekisteröinti onnistui
+        """
         if len(password) < 8:
             raise InvalidPasswordError("The password is too short")
         if username in self.get_users():
@@ -32,17 +61,27 @@ class UserService:
         if password != confirmation:
             raise InvalidPasswordError("The passwords do not match")
 
-        conn = sqlite3.connect("app.db")
-        cur = conn.cursor()
+        cur = self.conn.cursor()
         cur.execute(
             "INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
-        conn.commit()
+        self.conn.commit()
         self.current_user = User(1, username) # 1 will be changed to a real id
         return True
 
     def login(self, username, password):
-        conn = sqlite3.connect("app.db")
-        cur = conn.cursor()
+        """Kirjaa käyttäjän sisään
+
+        Args:
+            username: käyttäjänimi
+            password: salasana
+
+        Raises:
+            InvalidCredentialsError: Väärä käyttäjänimi tai salasana
+
+        Returns:
+            True, jos kirjautuminen onnistui
+        """
+        cur = self.conn.cursor()
         result = cur.execute(
             """SELECT id, username FROM users WHERE username = ?
                AND password = ?""", (username, password))

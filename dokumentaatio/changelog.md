@@ -17,3 +17,10 @@
 
 - Kursseille voi kurssia luodessa lisätä tehtäviä, joilla on deadlinet
 - Kurssin tehtäviä voi tarkastella klikkaamalla kurssia kurssilistassa
+
+
+## Viikko 6
+
+- Testit kurssien luomiselle, listaamiselle ja poistamiselle
+- Kursseja voi poistaa käyttöliittymän kautta
+- Kurssin tehtäviä voidaan merkitä tehdyiksi

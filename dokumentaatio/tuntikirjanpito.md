@@ -10,4 +10,6 @@
 | 30.11 | 1 |  Kurssien tehtäviä käsittelevien tietokantametodien toteuttaminen |
 | 1.12  | 3 |  Kurssien tehtävien lisääminen käyttöliittymän kautta |
 | 2.12  | 2  | Kurssien tehtävien listaaminen kurssien kohdalla ja kursseja luodessa  |
-| Yhteensä |  17  |   |
+| 8.12  |  3  | Testit kurssien luomiselle, listaamiselle ja poistamiselle, kurssien poistamisen toteuttaminen, kurssin tehtävien tehdyksi merkitsemisen toteuttaminen  |
+|  9.12 |  2  |  Docstring, dokumentaatio  |
+| Yhteensä |  22  |   |

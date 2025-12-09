@@ -9,3 +9,8 @@ Tällä viikolla tekoälyä käytettiin jälleen virheviestien selittämiseen ja
 ## Viikko 5
 
 Tällä viikolla tekoälyä käytettiin generoimaan muutamia koodinpätkiä käyttöliittymää varten. Nämä kohdat on ympyröity kommenteilla, jotka kertovat generoidusta koodista. Osia generoidusta koodista on myöhemmin uudelleenkäytetty pienin muutoksin myös joissain muissa käyttöliittymän osissa, muttan näissä kohdissa kommenttia generoidusta koodista ei ole. Myös sekvenssikaavion tuottamiseen käytettiin apuna tekoälyn tuottamaa esimerkkiä sekvenssikaaviosta, mutta lopullinen sekvenssikaavio on hyvin erilainen kuin generoitu sekvenssikaavio.
+
+
+## Viikko 6
+
+Tällä viikolla tekoälyä käytettiin virheiden selittämiseena ja korjaamiseen sekä tkinterin Treeviewin ominaisuuksien selittämiseen.

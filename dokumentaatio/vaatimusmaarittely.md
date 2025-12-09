@@ -19,9 +19,9 @@ Sovelluksen avulla käyttäjät voivat seurata opintojaan ja pitää kirjaa suor
 
 - Käyttäjä näkee suoritettujen ja suunniteltujen kurssien ja opintopisteiden määrän.
 
-- Käyttäjä näkee yksittäisten kurssien kohdalla suoritetut ja suorittamattomat vaiheet.
+- Käyttäjä näkee yksittäisten kurssien kohdalla suoritetut ja suorittamattomat vaiheet. **tehty**
 
-- Käyttäjä voi lisätä järjestelmään uusia kursseja, joiden työmäärän käyttäjä voi jakaa osiin.
+- Käyttäjä voi lisätä järjestelmään uusia kursseja, joiden työmäärän käyttäjä voi jakaa osiin. **tehty**
 
 - Käyttäjä voi merkitä kursseja ja kurssien osia suoritetuiksi.
 

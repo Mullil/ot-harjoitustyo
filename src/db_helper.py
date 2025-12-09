@@ -1,16 +1,30 @@
 import sqlite3
 
 
-def drop_tables():
+def get_conn():
+    """Alustaa yhteyden tietokantaan
+
+    Returns:
+        conn: yhteys tietokantaan
+    """
     conn = sqlite3.connect("app.db")
+    return conn
+
+def drop_tables():
+    """Poistaa tietokannan taulut
+    """
+    conn = get_conn()
     cur = conn.cursor()
     cur.execute("DROP TABLE IF EXISTS users")
     cur.execute("DROP TABLE IF EXISTS courses")
     cur.execute("DROP TABLE IF EXISTS tasks")
+    conn.close()
 
 
 def create_db():
-    conn = sqlite3.connect("app.db")
+    """Luo tietokannan
+    """
+    conn = get_conn()
     cur = conn.cursor()
     cur.execute("""CREATE TABLE IF NOT EXISTS users
                     (id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -1,51 +1,38 @@
 import unittest
+from entities.course import Course
 from services.course_service import (
     CourseService
 )
 import db_helper
 
-"""
+
 class TestCourseService(unittest.TestCase):
     def setUp(self):
         db_helper.drop_tables()
         db_helper.create_db()
+        self.service = CourseService()
 
-    def test_course_creating_succeeds(self):
-        service = CourseService()
-        self.assertTrue(service.register(
-            self.username, self.password, "password"))
+    def tearDown(self):
+        self.service.conn.close()
 
-    def test_course_creating_fails_with_missing_values(self):
+    def test_course_creating_succeeds_and_returns_id(self):
         service = CourseService()
-        self.assertRaises(InvalidPasswordError,
-                          lambda: service.register("username", "p", "p"))
-
-    def test_course_deleting_succeeds(self):
-        service = CourseService()
-        service.register(self.username, self.password, self.password)
-        self.assertRaises(CoursenameExistsError, lambda: service.register(
-            self.username, "anotherpassword", "anotherpassword"))
-
-    def test_course_completing_succeeds(self):
-        service = CourseService()
-        self.assertRaises(InvalidPasswordError, lambda: service.register(
-            self.username, "password", "anotherpassword"))
+        course_id = service.create_course(user_id=1, name="testCourse", course_credits=5)
+        self.assertEqual(1, course_id)
 
     def test_listing_current_courses_works(self):
-        service = CourseService()
-        service.register(self.username, self.password, "password")
-        self.assertTrue(service.login(self.username, self.password))
-        self.assertEqual(service.current_user.username, "username")
+        self.service.create_course(user_id=1, name="testCourse", course_credits=5)
+        self.service.create_course(user_id=1, name="testCourse2", course_credits=5)
+        courses = self.service.get_current_courses(user_id=1)
+        self.assertEqual(list, type(courses))
+        self.assertEqual(Course, type(courses[0]))
+        self.assertEqual(2, len(courses))
 
-    def test_listing_completed_courses_words(self):
-        service = CourseService()
-        service.register(self.username, self.password, "password")
-        self.assertRaises(InvalidCredentialsError,
-                          lambda: service.login(self.username, "wrong"))
+    def test_course_deleting_succeeds(self):
+        course_id = self.service.create_course(user_id=1, name="testCourse", course_credits=5)
+        self.service.create_course(user_id=1, name="testCourse2", course_credits=5)
+        self.service.delete_course(course_id=course_id)
 
-    def test_correct_amount_of_credits_are_returned(self):
-        service = CourseService()
-        self.assertTrue(service.register(
-            self.username, self.password, "password"))
-
-"""
+        courses = self.service.get_current_courses(user_id=1)
+        self.assertEqual(1, len(courses))
+        self.assertEqual("testCourse2", courses[0].name)

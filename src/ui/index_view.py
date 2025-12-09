@@ -25,7 +25,7 @@ class IndexView:
         logout_button = ttk.Button(
             master=self.frame,
             text="Log out",
-            command=self.handleLogout
+            command=self.handle_logout
         )
         logout_button.pack(padx=5, pady=5)
         header = ttk.Label(
@@ -48,24 +48,24 @@ class IndexView:
         self.listbox.insert(tk.END, f"total credits: {total}")
 
         # Generoitu koodi alkaa
-        self.listbox.bind("<<ListboxSelect>>", self.handleSelect)
+        self.listbox.bind("<<ListboxSelect>>", self.handle_select)
         # Generoitu koodi loppuu
 
         add_new_button = ttk.Button(
             master=self.frame,
             text="Add new course",
-            command=self.handleAddNew
+            command=self.handle_add_new
         )
         add_new_button.pack(padx=5, pady=5)
 
-    def handleAddNew(self):
+    def handle_add_new(self):
         self.show_create_course_view()
 
-    def handleLogout(self):
+    def handle_logout(self):
         self.show_starting_view()
 
     # Generoitu koodi alkaa
-    def handleSelect(self, event):
+    def handle_select(self, event):
         course_service = CourseService()
         self.courses = course_service.get_current_courses(user_id=self.user_id)
         selected = event.widget.curselection()

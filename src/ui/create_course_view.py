@@ -6,16 +6,33 @@ from entities.task import NewTask
 
 
 class CreateCourseView:
+    """Luokka, joka hallitsee kurssien  luomisnäkymää
+
+    Attributes:
+        root: juuri
+        frame: runko
+        show_index_view: funktio, joka näyttää kurssit listaavan näkymän
+    """
     def __init__(self, root, show_index_view):
+        """Luokan konstruktori
+
+        Args:
+            root: juuri
+            show_index_view: funktio, joka näyttää kurssit listaavan näkymän
+        """
         self.root = root
         self.frame = None
         self.show_index_view = show_index_view
         self.tasks = []
 
     def destroy(self):
+        """Poistaa luodun näkymän
+        """
         self.frame.destroy()
 
     def initialize_view(self):
+        """Luo näkymän kurssien luomiselle
+        """
         self.frame = ttk.Frame(master=self.root)
         self.frame.pack()
         header = ttk.Label(
@@ -50,18 +67,6 @@ class CreateCourseView:
         deadline_label.pack(padx=5, pady=5)
         self.deadline_entry.pack(padx=5, pady=5)
 
-        # Generoitu koodi alkaa
-        self.task_list = ttk.Treeview(
-            master=self.frame,
-            columns=("description", "deadline"),
-            show="headings",
-            height=5
-        )
-        self.task_list.heading("description", text="Description")
-        self.task_list.heading("deadline", text="Deadline")
-        self.task_list.pack(padx=5, pady=5)
-        # Generoitu koodi päättyy
-
         task_button = ttk.Button(
             master=self.frame,
             text="Add task",
@@ -75,9 +80,28 @@ class CreateCourseView:
             command=self.handle_create
         )
         create_button.pack(padx=5, pady=5)
+
+        tasks_header = ttk.Label(
+            self.frame,
+            text="Added tasks",
+        )
+        tasks_header.pack(padx=10, pady=10)
+        # Generoitu koodi alkaa
+        self.task_list = ttk.Treeview(
+            master=self.frame,
+            columns=("description", "deadline"),
+            show="headings",
+            height=5
+        )
+        self.task_list.heading("description", text="Description")
+        self.task_list.heading("deadline", text="Deadline")
+        self.task_list.pack(padx=5, pady=5)
+        # Generoitu koodi päättyy
         self.frame.pack()
 
     def handle_create(self):
+        """Lisää tietokantaan kurssin annetuilla tiedoilla
+        """
         course_service = CourseService()
         task_service = TaskService()
         course_id = course_service.create_course(
@@ -89,6 +113,8 @@ class CreateCourseView:
         self.show_index_view()
 
     def add_task(self):
+        """Lisää kurssille lisättäväksi tehtävän
+        """
         task = NewTask(self.task_entry.get(), self.deadline_entry.get())
         self.tasks.append(task)
         self.task_entry.delete(0, tk.END)
