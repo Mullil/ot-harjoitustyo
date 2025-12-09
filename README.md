@@ -4,6 +4,8 @@ Tämän harjoitustyön tarkoituksena on toteuttaa opintojen seurantajärjestelm�
 
 [Viikon 5 release](https://github.com/Mullil/ot-harjoitustyo/tree/viikko5)
 
+[Viikon 6 release](https://github.com/Mullil/ot-harjoitustyo/tree/viikko6)
+
 ## Käyttöohje
 
 Asenna sovelluksen riippuvuudet komennolla:
