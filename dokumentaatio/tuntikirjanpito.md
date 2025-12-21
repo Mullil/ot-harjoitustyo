@@ -12,4 +12,6 @@
 | 2.12  | 2  | Kurssien tehtävien listaaminen kurssien kohdalla ja kursseja luodessa  |
 | 8.12  |  3  | Testit kurssien luomiselle, listaamiselle ja poistamiselle, kurssien poistamisen toteuttaminen, kurssin tehtävien tehdyksi merkitsemisen toteuttaminen  |
 |  9.12 |  2  |  Docstring, dokumentaatio  |
+|    |    |    |
+|  21.12  |  2  |  Käyttöliittymän refaktorointi  |
 | Yhteensä |  22  |   |

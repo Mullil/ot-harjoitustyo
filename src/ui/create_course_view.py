@@ -3,6 +3,7 @@ from tkinter import ttk
 from services.course_service import CourseService
 from services.task_service import TaskService
 from entities.task import NewTask
+from ui.common import create_button, create_header, create_entry
 
 
 class CreateCourseView:
@@ -13,79 +14,52 @@ class CreateCourseView:
         frame: runko
         show_index_view: funktio, joka näyttää kurssit listaavan näkymän
     """
-    def __init__(self, root, show_index_view):
+    def __init__(self, root, show_index_view, current_user):
         """Luokan konstruktori
 
         Args:
             root: juuri
             show_index_view: funktio, joka näyttää kurssit listaavan näkymän
+            current_user: kirjautunut käyttäjä
         """
         self.root = root
         self.frame = None
         self.show_index_view = show_index_view
         self.tasks = []
+        self.current_user = current_user
 
     def destroy(self):
         """Poistaa luodun näkymän
         """
         self.frame.destroy()
 
-    def initialize_view(self):
+    def initialize_view(self, error=None):
         """Luo näkymän kurssien luomiselle
         """
         self.frame = ttk.Frame(master=self.root)
         self.frame.pack()
-        header = ttk.Label(
-            self.frame,
-            text="Create course",
-        )
-        header.pack(padx=10, pady=10)
 
-        name_label = ttk.Label(master=self.frame, text="Course name")
-        self.name_entry = ttk.Entry(master=self.frame)
-        name_label.pack(padx=5, pady=5)
-        self.name_entry.pack(padx=5, pady=5)
+        if error:
+            message = ttk.Label(
+                self.frame,
+                text=error,
+            )
+            message.pack(padx=10, pady=10)
 
-        credits_label = ttk.Label(master=self.frame, text="Credits")
-        self.credits_entry = ttk.Entry(master=self.frame)
-        credits_label.pack(padx=5, pady=5)
-        self.credits_entry.pack(padx=5, pady=5)
+        create_button(frame=self.frame, text="Go back", command=lambda: self.show_index_view(self.current_user))
+        create_header(frame=self.frame, text="Create course")
 
-        task_header = ttk.Label(
-            self.frame,
-            text="Course tasks",
-        )
-        task_header.pack(padx=10, pady=10)
+        self.name_entry = create_entry(frame=self.frame, text="Course name")
+        self.credits_entry = create_entry(frame=self.frame, text="Credits")
 
-        task_label = ttk.Label(master=self.frame, text="Task description")
-        self.task_entry = ttk.Entry(master=self.frame)
-        task_label.pack(padx=5, pady=5)
-        self.task_entry.pack(padx=5, pady=5)
+        create_header(frame=self.frame, text="Course tasks")
 
-        deadline_label = ttk.Label(master=self.frame, text="Task deadline")
-        self.deadline_entry = ttk.Entry(master=self.frame)
-        deadline_label.pack(padx=5, pady=5)
-        self.deadline_entry.pack(padx=5, pady=5)
+        self.task_entry = create_entry(frame=self.frame, text="Task description")
+        self.deadline_entry = create_entry(frame=self.frame, text="Task deadline")
 
-        task_button = ttk.Button(
-            master=self.frame,
-            text="Add task",
-            command=self.add_task
-        )
-        task_button.pack(padx=5, pady=5)
-
-        create_button = ttk.Button(
-            master=self.frame,
-            text="Add course",
-            command=self.handle_create
-        )
-        create_button.pack(padx=5, pady=5)
-
-        tasks_header = ttk.Label(
-            self.frame,
-            text="Added tasks",
-        )
-        tasks_header.pack(padx=10, pady=10)
+        create_button(frame=self.frame, text="add task", command=self.add_task)
+        create_button(frame=self.frame, text="Add course", command=self.handle_create)
+        create_header(frame=self.frame, text="Added tasks")
         # Generoitu koodi alkaa
         self.task_list = ttk.Treeview(
             master=self.frame,
@@ -104,13 +78,18 @@ class CreateCourseView:
         """
         course_service = CourseService()
         task_service = TaskService()
-        course_id = course_service.create_course(
-            1,
-            self.name_entry.get(),
-            self.credits_entry.get(),
-        )
-        task_service.add_tasks(self.tasks, course_id)
-        self.show_index_view()
+        try:
+            cr = int(self.credits_entry.get())
+            course_id = course_service.create_course(
+                self.current_user.id,
+                self.name_entry.get(),
+                cr,
+            )
+            task_service.add_tasks(self.tasks, course_id)
+            self.show_index_view(self.current_user)
+        except:
+            self.destroy()
+            self.initialize_view(error="Invalid credits")
 
     def add_task(self):
         """Lisää kurssille lisättäväksi tehtävän

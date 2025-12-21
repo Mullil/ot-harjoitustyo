@@ -55,7 +55,7 @@ class UserService:
             True, jos rekisteröinti onnistui
         """
         if len(password) < 8:
-            raise InvalidPasswordError("The password is too short")
+            raise InvalidPasswordError("The password should be at least 8 characters long")
         if username in self.get_users():
             raise UsernameExistsError("Username already exists")
         if password != confirmation:
@@ -65,7 +65,8 @@ class UserService:
         cur.execute(
             "INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
         self.conn.commit()
-        self.current_user = User(1, username) # 1 will be changed to a real id
+        user_id = cur.lastrowid
+        self.current_user = User(user_id, username)
         return True
 
     def login(self, username, password):

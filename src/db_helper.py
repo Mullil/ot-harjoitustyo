@@ -1,5 +1,9 @@
+import os
 import sqlite3
+from dotenv import load_dotenv
 
+
+load_dotenv()
 
 def get_conn():
     """Alustaa yhteyden tietokantaan
@@ -7,8 +11,15 @@ def get_conn():
     Returns:
         conn: yhteys tietokantaan
     """
-    conn = sqlite3.connect("app.db")
+    db_file = os.getenv("DB", "app.db")
+    conn = sqlite3.connect(db_file)
     return conn
+
+# Generoitu koodi alkaa
+def commit_and_close(conn, cur):
+    conn.commit()
+    cur.close()
+# Generoitu koodi loppuu
 
 def drop_tables():
     """Poistaa tietokannan taulut

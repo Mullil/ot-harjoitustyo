@@ -1,4 +1,5 @@
 from tkinter import ttk, constants
+from ui.common import create_button
 
 
 class StartingView:
@@ -18,16 +19,5 @@ class StartingView:
         self.frame = ttk.Frame(master=self.root)
         self.frame.pack(fill=constants.X)
 
-        login_button = ttk.Button(
-            master=self.frame,
-            text="Login",
-            command=self.login
-        )
-        login_button.pack()
-
-        register_button = ttk.Button(
-            master=self.frame,
-            text="Register",
-            command=self.register
-        )
-        register_button.pack()
+        create_button(frame=self.frame, text="Login", command=self.login)
+        create_button(frame=self.frame, text="Register", command=self.register)

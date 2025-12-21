@@ -14,3 +14,8 @@ Tällä viikolla tekoälyä käytettiin generoimaan muutamia koodinpätkiä käy
 ## Viikko 6
 
 Tällä viikolla tekoälyä käytettiin virheiden selittämiseena ja korjaamiseen sekä tkinterin Treeviewin ominaisuuksien selittämiseen.
+
+
+## Viikko 7
+
+Tällä viikolla tekoälyä käytettiin parin rivin generoimiseen, jotka on kommentein ympäröity tekoälyn generoimiksi, ja virheiden selittämiseen.

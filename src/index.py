@@ -6,7 +6,6 @@ import db_helper
 def main():
     """Alustaa tietokannan ja käyttöliittymän
     """
-    db_helper.drop_tables()
     db_helper.create_db()
     root = Tk()
     root.title("Study management app")

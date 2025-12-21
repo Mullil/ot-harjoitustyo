@@ -24,3 +24,9 @@
 - Testit kurssien luomiselle, listaamiselle ja poistamiselle
 - Kursseja voi poistaa käyttöliittymän kautta
 - Kurssin tehtäviä voidaan merkitä tehdyiksi
+
+## Viikko 7
+
+- Kurssin voi merkitä tehdyksi
+- Tehdyt kurssit listataan
+- Kirjautumis- ja rekisteröitymissivut näyttävät virheviestin

@@ -1,5 +1,5 @@
 from entities.task import Task
-from db_helper import get_conn
+from db_helper import get_conn, commit_and_close
 
 class TaskService:
     """Luokka, jonka avulla hallitaan kurssien tehtäviä tietokannassa
@@ -28,8 +28,7 @@ class TaskService:
                 "INSERT INTO tasks (course_id, content, deadline) VALUES (?, ?, ?)",
                 (course_id, task.content, task.deadline)
             )
-        self.conn.commit()
-        cur.close()
+        commit_and_close(self.conn, cur)
         return True
 
     def get_course_tasks(self, course_id):
@@ -63,5 +62,4 @@ class TaskService:
         cur.execute(
             "UPDATE tasks SET done = 1 WHERE id = ?", (task_id)
         )
-        self.conn.commit()
-        cur.close()
+        commit_and_close(self.conn, cur)

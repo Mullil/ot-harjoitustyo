@@ -1,5 +1,6 @@
 from services.task_service import TaskService
 from services.course_service import CourseService
+from ui.common import create_button, create_header
 from tkinter import ttk
 
 class CourseView:
@@ -10,17 +11,19 @@ class CourseView:
         frame: runko
         show_index_view: funktio, joka näyttää kurssit listaavan näkymän
     """
-    def __init__(self, root, show_index_view):
+    def __init__(self, root, show_index_view, current_user):
         """Luokan konstruktori
 
         Args:
             root: juuri
             show_index_view: funktio, joka näyttää kurssit listaavan näkymän
+            current_user: sisäänkirjautunut käyttäjä
         """
         self.root = root
         self.frame = None
         self.show_index_view = show_index_view
         self.course_service = CourseService()
+        self.current_user = current_user
     
     def destroy(self):
         """Poistaa luodun näkymän
@@ -37,17 +40,9 @@ class CourseView:
         tasks = TaskService().get_course_tasks(self.course.id)
         self.frame = ttk.Frame(master=self.root)
         self.frame.pack()
-        back_button = ttk.Button(
-            master=self.frame,
-            text="Go back",
-            command=self.show_index_view
-        )
-        back_button.pack(padx=5, pady=5)
-        header = ttk.Label(
-            self.frame,
-            text=f"{self.course.name}, {self.course.credits} Cr",
-        )
-        header.pack(padx=10, pady=10)
+
+        create_button(frame=self.frame, text="Go back", command=lambda: self.show_index_view(self.current_user))
+        create_header(frame=self.frame, text=f"{self.course.name}, {self.course.credits} Cr")
 
         self.task_list = ttk.Treeview(
             master=self.frame,
@@ -65,12 +60,11 @@ class CourseView:
             self.task_list.insert("", "end", iid=task.id, values=(task.content, task.deadline, done))
         self.task_list.bind("<<TreeviewSelect>>", self.handle_select)
 
-        delete_button = ttk.Button(
-            master=self.frame,
-            text="Delete course",
-            command=self.handle_delete
-        )
-        delete_button.pack(padx=5, pady=5)
+
+        create_button(frame=self.frame, text="Delete course", command=self.handle_delete)
+        completed = self.course.completed
+        if not completed:
+            create_button(frame=self.frame, text="Mark completed", command=lambda: self.handle_complete(course_id))
 
     def handle_delete(self):
         """Poistaa kurssin
@@ -78,7 +72,7 @@ class CourseView:
 
         course_service = CourseService()
         course_service.delete_course(self.course.id)
-        self.show_index_view()
+        self.show_index_view(self.current_user)
 
     def handle_select(self, event):
         """Merkitsee valitun tehtävän tehdyksi
@@ -92,3 +86,8 @@ class CourseView:
         task_service.complete_task(idx)
         self.destroy()
         self.initialize_view(course_id=self.course.id)
+
+    def handle_complete(self, course_id):
+        self.course_service.complete_course(course_id)
+        self.destroy()
+        self.show_index_view(self.current_user)

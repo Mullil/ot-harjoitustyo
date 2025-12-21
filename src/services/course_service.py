@@ -1,5 +1,5 @@
 from entities.course import Course
-from db_helper import get_conn
+from db_helper import get_conn, commit_and_close
 
 class CourseService:
     """Luokka, jonka avulla hallitaan ja hetaan kurssien tietoja tietokannasta
@@ -85,9 +85,9 @@ class CourseService:
         """
         cur = self.conn.cursor()
         cur.execute(
-            "UPDATE courses SET completed 1 WHERE id = ?", (course_id)
+            "UPDATE courses SET completed = 1 WHERE id = ?", (course_id,)
         )
-        cur.close()
+        commit_and_close(self.conn, cur)
         return True
 
     def delete_course(self, course_id):
@@ -106,8 +106,7 @@ class CourseService:
         )
         cur.execute(
             "DELETE FROM tasks WHERE course_id = ?",(course_id,))
-        self.conn.commit()
-        cur.close()
+        commit_and_close(self.conn, cur)
         return True
 
     def get_course(self, course_id):

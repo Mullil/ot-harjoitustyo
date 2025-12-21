@@ -44,7 +44,7 @@ class UI:
 
         if self.current_view:
             self.current_view.destroy()
-        self.current_view = RegisterView(self.root, self.show_index_view)
+        self.current_view = RegisterView(self.root, self.show_index_view, self.start)
         self.current_view.initialize_view()
 
     def show_login_view(self):
@@ -53,35 +53,44 @@ class UI:
 
         if self.current_view:
             self.current_view.destroy()
-        self.current_view = LoginView(self.root, self.show_index_view)
+        self.current_view = LoginView(self.root, self.show_index_view, self.start)
         self.current_view.initialize_view()
 
-    def show_index_view(self):
+    def show_index_view(self, current_user):
         """Näyttää listan kursseista
+
+            Args:
+                current_user: kirjautunut käyttäjä
         """
 
         if self.current_view:
             self.current_view.destroy()
         self.current_view = IndexView(
-            self.root, self.show_create_course_view, self.start, self.show_course_view)
+            self.root, self.show_create_course_view,
+            self.start, self.show_course_view,
+            current_user)
         self.current_view.initialize_view()
 
-    def show_create_course_view(self):
+    def show_create_course_view(self, current_user):
         """Näyttää kurssien luomisnäkymän
+
+            Args:
+                current_user: kirjautunut käyttäjä
         """
 
         if self.current_view:
             self.current_view.destroy()
-        self.current_view = CreateCourseView(self.root, self.show_index_view)
+        self.current_view = CreateCourseView(self.root, self.show_index_view, current_user)
         self.current_view.initialize_view()
 
-    def show_course_view(self, course):
+    def show_course_view(self, course, current_user):
         """Näyttää yksittäisen kurssin tiedot
 
         Args:
             course: kurssi, jonka tiedot näytetään
+            current_user: kirjautunut käyttäjä
         """
         if self.current_view:
             self.current_view.destroy()
-        self.current_view = CourseView(self.root, self.show_index_view)
+        self.current_view = CourseView(self.root, self.show_index_view, current_user)
         self.current_view.initialize_view(course.id)
