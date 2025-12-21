@@ -6,6 +6,8 @@ Tämän harjoitustyön tarkoituksena on toteuttaa opintojen seurantajärjestelm�
 
 [Viikon 6 release](https://github.com/Mullil/ot-harjoitustyo/tree/viikko6)
 
+[Loppupalautus](https://github.com/Mullil/ot-harjoitustyo/tree/Loppupalautus)
+
 ## Käyttöohje
 
 Asenna sovelluksen riippuvuudet komennolla:
