@@ -26,4 +26,4 @@ Kirjautumisen tai rekisteröitymisen jälkeisessä näkymässä käyttäjä voi 
 
 ## Kurssin tarkastelu
 
-Kirjautumisen jälkeisellä sivulla käyttäjän luomat kurssit listataan opintopisteineen, ja painamalla listattua kurssia voi käyttäjä siirtyä tarkastelemaan kurssin sisältöä, esim. lisättyjä tehtäviä.
+Kirjautumisen jälkeisellä sivulla käyttäjän luomat kurssit listataan opintopisteineen, ja painamalla listattua kurssia voi käyttäjä siirtyä tarkastelemaan kurssin sisältöä, esim. lisättyjä tehtäviä. Tällä sivulla voidaan myös poistaa kurssi tai merkitä se tehdyksi.
